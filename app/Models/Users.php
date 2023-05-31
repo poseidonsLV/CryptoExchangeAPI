@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Users extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $table = 'Users';
 
     /**
      * The attributes that are mass assignable.
