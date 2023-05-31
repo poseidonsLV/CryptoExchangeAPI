@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\User;
+use \App\Http\Controllers\Crypto;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::post('user/register', [User::class, 'register']);
+Route::post('user/login', [User::class, 'login']);
+Route::group(['middleware' => 'valid.token'], function () {
+    Route::post('crypto/exchangeRates', [Crypto::class, 'getCryptoExchangeRates']);
 });
+
